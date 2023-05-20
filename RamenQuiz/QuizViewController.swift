@@ -2,15 +2,12 @@
 //  QuizViewController.swift
 //  RamenQuiz
 //
-//  Created by KengoNishi Apple on 2022/02/26.
+//  Created by KengoNishi on 2022/02/26.
 //
 
 import UIKit
 
-//今回に関してはUIKitを使用しているimportする数は減らしている
-
 class QuizViewController: UIViewController {
-    
     
     @IBOutlet var quizNumberLabel: UILabel!
     @IBOutlet var quizTextView: UITextView!
@@ -20,46 +17,26 @@ class QuizViewController: UIViewController {
     @IBOutlet var answerButton4: UIButton!
     @IBOutlet var judgeImageView: UIImageView!
     
-//    @IBOutletは一つにまとめること同じ処理を繰り返すところはまとめるべき
-    
     var csvArray: [String] = []
     var quizArray: [String] = []
     var quizCount = 0
     var correctCount = 0
-    
-//    var変数に関しても定義する場所を設けるべきちゃんとファイルで分けて処理速度を上げることでアプリの起動、初動、終わりまでの速度を滑らかにすること
-    
-    
-//    関数を定義することはすごく大事だけど関数の数が多くなった場合はファイルを分ける必要がある
 
-    
-//    ロード開始
-    
-
-//    関数定義の内容
     override func viewDidLoad() {
         super.viewDidLoad()
 
-//        csvArray = loadCSV(fileName: "quiz")　CSVファイルにしてファイル名quizを読み込む
-//        csvArray.shuffle()　読み込んだファイルをランダムに
-//        print(csvArray)　ファイルを出力する
+        csvArray = loadCSV(fileName: "quiz")
+        csvArray.shuffle()
+        print(csvArray)
         
-        
-        
-        
-        
-//        quizArray = csvArray[quizCount].components(separatedBy: ",")　quizArrayにはcsvArrayの要素の中の全体のcsvArrayに対して要素でわける。分け方は,で【°直訳】
+        quizArray = csvArray[quizCount].components(separatedBy: ",")
         quizNumberLabel.text = "第\(quizCount + 1)問"
         quizTextView.text = quizArray[0]
         
-//        レイアウトの高さとか色の指定これも違うファイルで管理しよう多すぎ
         answerButton1.setTitle(quizArray[2], for: .normal)
         answerButton2.setTitle(quizArray[3], for: .normal)
         answerButton3.setTitle(quizArray[4], for: .normal)
         answerButton4.setTitle(quizArray[5], for: .normal)
-        
-        
-//        レイアウトの高さとか色の指定これも違うファイルで管理しよう多すぎ
         answerButton1.layer.borderWidth = 2
         answerButton1.layer.borderColor = UIColor.black.cgColor
         answerButton2.layer.borderWidth = 2
@@ -68,7 +45,6 @@ class QuizViewController: UIViewController {
         answerButton3.layer.borderColor = UIColor.black.cgColor
         answerButton4.layer.borderWidth = 2
         answerButton4.layer.borderColor = UIColor.black.cgColor
-        
         // Do any additional setup after loading the view.
     }
     
